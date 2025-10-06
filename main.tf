@@ -16,3 +16,10 @@ resource "byteplus_subnet" "tf_subnet2" {
   zone_id     = "ap-southeast-1a"
   vpc_id      = byteplus_vpc.tf_vpc.id
 }
+
+resource "byteplus_subnet" "tf_subnet3" {
+  subnet_name = "tf-vke-subnet3"
+  cidr_block  = "172.16.2.0/24"
+  zone_id     = "ap-southeast-1b"
+  vpc_id      = byteplus_vpc.tf_vpc.id
+}

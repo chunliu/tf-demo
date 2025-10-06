@@ -9,8 +9,8 @@ terraform {
 
 # Configure the Byteplus Provider
 provider "byteplus" {
-  access_key    = var.ak
-  secret_key    = var.sk
+  access_key    = var.ak  # Provide your BytePlus access key
+  secret_key    = var.sk  # Provide your BytePlus secret key
   region        = "ap-southeast-1"
   endpoint      = "open.ap-southeast-1.byteplusapi.com"
 }
