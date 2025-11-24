@@ -53,6 +53,7 @@ resource "byteplus_vke_addon" "tf_vke_addon_metrics" {
 }
 
 resource "byteplus_vke_addon" "tf_vke_addon_ingress_nginx" {
+  count = var.create_nginx_ingress ? 1 : 0
   cluster_id = byteplus_vke_cluster.vke_cluster.id
   name = "ingress-nginx"
   config = jsonencode(
@@ -110,4 +111,10 @@ resource "byteplus_vke_addon" "tf_vke_addon_cr" {
       }
     }
   )
+}
+
+resource "byteplus_vke_addon" "tf_vke_addon_vci" {
+  cluster_id = byteplus_vke_cluster.vke_cluster.id
+  name = "vci-virtual-kubelet"
+  deploy_mode = "Managed"
 }

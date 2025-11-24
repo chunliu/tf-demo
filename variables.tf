@@ -17,3 +17,15 @@ variable "cr_instance" {
   description = "CR instance"
   type = string
 }
+
+variable "create_jumpbox" {
+  description = "Create jumpbox"
+  type = bool
+  default = false
+}
+
+variable "create_nginx_ingress" {
+  description = "Create nginx ingress"
+  type = bool
+  default = false
+}

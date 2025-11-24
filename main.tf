@@ -23,3 +23,11 @@ resource "byteplus_subnet" "tf_subnet3" {
   zone_id     = "ap-southeast-1b"
   vpc_id      = byteplus_vpc.tf_vpc.id
 }
+
+module "ecs_jumpbox" {
+  source = "./modules/ecs_jumpbox"
+  count = var.create_jumpbox ? 1 : 0
+  vpc_id = byteplus_vpc.tf_vpc.id
+  subnet_id = byteplus_subnet.tf_subnet1.id
+  key_pair_name = byteplus_ecs_key_pair.tf_keypair.key_pair_name
+}

@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    byteplus = {
+      source = "byteplus-sdk/byteplus"
+      version = "0.0.22"
+    }
+  }
+}
+
 data "byteplus_images" "ecs_images" {
     os_type = "Linux"
     instance_type_id = "ecs.c3il.xlarge"
@@ -6,7 +15,7 @@ data "byteplus_images" "ecs_images" {
 
 resource "byteplus_security_group" "ecs_security_group" {
     security_group_name = "tf-ecs-sg"
-    vpc_id      = byteplus_vpc.tf_vpc.id
+    vpc_id      = var.vpc_id
 }
 
 resource "byteplus_ecs_instance" "ecs_jumpbox" {
@@ -15,12 +24,12 @@ resource "byteplus_ecs_instance" "ecs_jumpbox" {
     instance_charge_type = "PostPaid"
     instance_name        = "ecs-gh-runner1"
     instance_type        = "ecs.c3il.xlarge"
-    key_pair_name        = byteplus_ecs_key_pair.tf_keypair.key_pair_name
+    key_pair_name        = var.key_pair_name
     project_name         = "CL-Project"
     security_group_ids   = [
         byteplus_security_group.ecs_security_group.id,
     ]
-    subnet_id            = byteplus_subnet.tf_subnet1.id
+    subnet_id            = var.subnet_id
     system_volume_size   = 100
     system_volume_type   = "ESSD_PL0"
 }
