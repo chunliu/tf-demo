@@ -25,7 +25,7 @@ resource "byteplus_ecs_instance" "ecs_jumpbox" {
     instance_name        = "ecs-gh-runner1"
     instance_type        = "ecs.c3il.xlarge"
     key_pair_name        = var.key_pair_name
-    project_name         = "CL-Project"
+    project_name         = "default"
     security_group_ids   = [
         byteplus_security_group.ecs_security_group.id,
     ]
